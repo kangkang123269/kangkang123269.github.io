@@ -1,0 +1,679 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>个人错题集 | 影风の小屋</title><meta name="author" content="影风莫"><meta name="copyright" content="影风莫"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前端个人错题集"><link rel="shortcut icon" href="/img/avatar.webp"><link rel="canonical" href="http://example.com/2022/10/18/%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AF%95/%E9%94%99%E9%A2%98%E9%9B%86/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '个人错题集',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-07-31 02:25:33'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/mouse.css"><meta name="generator" content="Hexo 6.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/loading.gif" data-original="/img/avatar.webp" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">27</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">18</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 档案</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链账</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于作者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://is.gd/BKfqTS')"><nav id="nav"><span id="blog-info"><a href="/" title="影风の小屋"><span class="site-name">影风の小屋</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 档案</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链账</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-comment-dots"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于作者</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">个人错题集</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-10-17T16:00:00.000Z" title="发表于 2022-10-18 00:00:00">2022-10-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-07-30T18:25:33.405Z" title="更新于 2023-07-31 02:25:33">2023-07-31</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AF%95/">前端笔试</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>11分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="个人错题集"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="个人错题集"><a href="#个人错题集" class="headerlink" title="个人错题集"></a>个人错题集</h1><h2 id="react"><a href="#react" class="headerlink" title="react"></a>react</h2><ol>
+<li><Route />中的 path 属性可以使用通配符，以下关于通配符的规则描述错误的是？</li>
+</ol>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A. “:paramName”： 匹配URL的一个部分，直到遇到下一个/、?、#为止。这个路径参数可以通过this.props.params.paramName取出</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">B. “()”： ()表示URL的这个部分是可选的。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C. “*”： *匹配任意字符，直到模式里面的下一个字符为止。匹配方式是贪婪模式。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D. “**”：** 匹配任意字符，直到下一个/、?、#为止。匹配方式是贪婪模式。</span><br></pre></td></tr></table></figure>
+
+<details> 
+<summary>查看答案</summary> 
+    
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">答案为D，*匹配任意字符，直到模式里面的下一个字符为止。匹配方式是非贪婪模式。</span><br></pre></td></tr></table></figure>
+</details>
+
+<ol start="2">
+<li>关于“错误边界”，以下说法错误的是？</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A. static getDerivedStateFromError() 可以用来渲染备用UI</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">B. componentDidCatch()可以打印错误信息</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C. 错误边界是一种React组件，这种组件可以捕获并打印发生在当前组件的javaScript错误</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D. class组件中只要定义了static getDerivedStateFromError()或componentDidCatch()其中一个，该组件就会变成错误边界</span><br></pre></td></tr></table></figure>
+
+<details> 
+<summary>查看答案</summary> 
+    
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">答案为C</span><br><span class="line">解析：错误边界无法捕获 以下四种场景中产生的错误： </span><br><span class="line">    1.`事件处理函数`（因为 Error Boundaries 实现的本质是触发更新，但是事件处理函数不在render或者commit阶段，所以无法进行捕获，</span><br><span class="line">如果你需要在事件处理器内部捕获错误，可以使用原生的 try / catch 语句 ） </span><br><span class="line">    2. 异步代码（例如 setTimeout 或 requestAnimationFrame 回调函数） </span><br><span class="line">    3. 服务端渲染（因为触发更新只能在客户端进行，不能在serve端进行） </span><br><span class="line">    4. 它自身抛出来的错误（因为错误抛出要向父节点冒泡寻找 Error Boundaries 处理，无法处理自身产生的错误）</span><br></pre></td></tr></table></figure>
+</details>
+
+<ol start="3">
+<li>以下不属于 React 支持的触摸事件的是？</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A. onTouchCancel</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">B. onTouchEnd</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C. onTouchStart</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D. onTouchOver</span><br></pre></td></tr></table></figure>
+
+<details> 
+<summary>查看答案</summary>
+
+<p>答案为 D<br>React 支持的触摸事件有：onTouchStart，onTouchMove，onTouchEnd，onTouchCancel</p>
+<table>
+<thead>
+<tr>
+<th>事件</th>
+<th>触发时机</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>onTouchStart</td>
+<td>手指触摸屏幕的时候触发</td>
+</tr>
+<tr>
+<td>onTouchMove</td>
+<td>手指在屏幕上滑动的时候触发</td>
+</tr>
+<tr>
+<td>onTouchEnd</td>
+<td>手指从屏幕上移开的时候触发</td>
+</tr>
+<tr>
+<td>onTouchCancel</td>
+<td>触摸事件被中断时发生，如：来电话、来短信、弹出消息提示</td>
+</tr>
+</tbody></table>
+</details>
+
+<ol start="4">
+<li>以下哪项对 react-router-dom 中组件分类是错误的?</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A. 路由器组件: BrowserRouter和HashRouter</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">B. 导航组件: Link和NavLink</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C. 路由匹配组件: Route和Switch</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D. 导航组件: Route和Switch</span><br></pre></td></tr></table></figure>
+
+<details> 
+<summary>查看答案</summary>
+
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">答案为D</span><br><span class="line">解析：在react-router-dom中通常使用的组件有三种路由器组件: 如BrowserRouter和HashRouter</span><br><span class="line"></span><br><span class="line">路由匹配组件: Route和Switch 组件</span><br><span class="line"></span><br><span class="line">导航组件: Link和NavLink 组件</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<ol start="5">
+<li>以下不属于 react 支持的剪贴板事件的是?</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A. onCopy</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">B. onPaste</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C. onCut</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D. onBeforeCopy</span><br></pre></td></tr></table></figure>
+
+<details> 
+<summary>查看答案</summary>
+
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">答案为D</span><br><span class="line">解析：react支持的剪贴板事件有onCopy，onCut，onPaste</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<ol start="6">
+<li>以下不属于 StrictMode 的作用或优点的是？</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A. 检测过时的 context API</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">B. 识别不安全的生命周期</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C. 检测意外的副作用</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D. 在生产环境也生效</span><br></pre></td></tr></table></figure>
+
+<details> 
+<summary>查看答案</summary>
+
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">答案为D</span><br><span class="line">解析：严格模式检查仅在开发模式下运行，它们不会影响生产构建。</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<ol start="7">
+<li>以下关于 Mobx 中原则说法错误的是?</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A. Mobx 支持单向数据流</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">B. 当状态改变时，所有衍生都会进行自动更新，可以观察到中间值</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C. 所有衍生默认都是同步更新</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D. 所有的计算值都应该是纯净的</span><br></pre></td></tr></table></figure>
+
+<details> 
+<summary>查看答案</summary>
+
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">答案为B</span><br><span class="line">解析：当状态改变时，所有衍生都会进行原子级的自动更新。因此永远不可能观察到中间值。</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<ol start="8">
+<li>关于 Context 一下说法错误的是？</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A. Context提供了一种在组件之间共享此类值的方式，而不必显式地通过组件树的逐层传递 props</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">B. Context设计目的是为了共享那些对于一个组件树而言是“全局”的数据</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C. Context会提高组件的复用性</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D. Context能让你将这些数据向组件树下所有的组件进行“广播”，所有的组件都能访问到这些数据，也能访问到后续的数据更新</span><br></pre></td></tr></table></figure>
+
+<details> 
+<summary>查看答案</summary>
+
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">答案为C</span><br><span class="line">解析：当一些值需要在多个组件间共享的时候，context是个可以避免数据层层传递的方法，但他会使得组件得复用性变差。</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<ol start="9">
+<li>以下关于 useContext 说法错误的是?</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A. 调用了useContext的组件总会在context值变化时重新渲染</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">B. 当组件上层最近的 &lt;MyContext.Provider&gt; 更新时，该 Hook 会触发重渲染</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C. useContext 的参数必须是 context 对象本身：</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D. 当组件最上层的 &lt;MyContext.Provider&gt; 更新时，该 Hook 会触发重渲染</span><br></pre></td></tr></table></figure>
+
+<details> 
+<summary>查看答案</summary>
+
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">答案为C</span><br><span class="line">解析：useContext 的参数必须是 *context 对象本身*：</span><br><span class="line">当组件上层最近的 &lt;MyContext.Provider&gt; 更新时，该 Hook 会触发重渲染，并使用最新传递给 MyContext provider 的 context value 值。</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<ol start="10">
+<li>可以使子节点渲染到存在于父组件以外的 DOM 节点上的方法是?</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A. React.createPortal</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">B. React.createElement</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C. ReactDOM.createPortal</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D. ReactDom.render</span><br></pre></td></tr></table></figure>
+
+<details> 
+<summary>查看答案</summary>
+
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">答案为C</span><br><span class="line">解析：ReactDOM.createPortal函数可以将子节点渲染到存在于父组件以外的DOM节点上。</span><br></pre></td></tr></table></figure>
+
+</details>
+    
+<ol start="11">
+<li>关于React中的“状态提升”说法错误的是?</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A. React建议任何可变数据应当只有一个相对应的唯一“数据源”</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">B. 提升状态(state)方式相比于双向绑定方式需要编写更多的“样板”代码</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C. 虽然某些数据可以由props或state推导得出，但是我们最好还是单独在state声明它</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D. 通常，多个组件需要反映相同的变化数据，都应尽量将共享状态提升到最近的公共父组件中去</span><br></pre></td></tr></table></figure>
+
+<details> 
+<summary>查看答案</summary>
+
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">答案为C</span><br><span class="line">解析：其中ABD都为官方说法，C选项中如果某些数据可以由props或state推导得出，那么就不应该将其在state中声明。</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<ol start="12">
+<li>以下不是 Redux 的使用原则的是？</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A. 单一数据源</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">B. 双向数据流</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C. State是只读的</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D. 使用纯函数来执行修改</span><br></pre></td></tr></table></figure>
+
+<details> 
+<summary>查看答案</summary> 
+    
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">答案为B</span><br><span class="line">解析：Redux可以用这三个基本原则来描述：1.单一数据源 2.State是只读的 3.使用纯函数来执行修改</span><br></pre></td></tr></table></figure>
+</details>
+
+<ol start="13">
+<li>从  DOM  中卸载组件，可以使用？</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A. ReactDOM.unmountComponentAtNode</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">B. ReactDOM.unmountComponent</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C. ReactDOM.unmountRender</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D. ReactDOM.clearDOMNode</span><br></pre></td></tr></table></figure>
+
+<details> 
+<summary>查看答案</summary> 
+    
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">答案为A</span><br><span class="line">解析：ReactDOM.unmountComponentAtNode，从DOM中卸载组件，会将其事件处理器</span><br><span class="line">    （event handlers）和 state 一并清除。如果指定容器上没有对应已挂载的组件，这个函数什么也不会做。</span><br><span class="line">    如果组件被移除将会返回 true，如果没有组件可被移除将会返回 false。</span><br></pre></td></tr></table></figure>
+</details>
+
+<ol start="14">
+<li>以下不属于 React 复合事件的是？</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A. onCompositionEnd</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">B. onCompositionRender</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C. onCompositionUpdate</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D. onCompositionStart</span><br></pre></td></tr></table></figure>
+
+<details> 
+<summary>查看答案</summary>
+
+<p>答案为 C<br>解析：React 复合事件有 onCompositionEnd，onCompositionStart，onCompositionUpdate</p>
+</details>
+
+<ol start="15">
+<li>在 componentDidUpdate()中以下哪个说法是正确的?</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A. 在componentDidUpdate()中可以任意调用setState()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">B. 当组件更新时，componentDidUpdate()总会被调用</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C. 首次渲染时，componentDidUpdate()会在componentDidMount()前面调用</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D. 当组件更新时，componentDidUpdate()可能不会被调用</span><br></pre></td></tr></table></figure>
+
+<details> 
+<summary>查看答案</summary>
+
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">答案为D</span><br><span class="line">解析：A选项中，可以在 componentDidUpdate()中直接调用 setState()，但请注意它必须被包裹在一个条件语句里</span><br><span class="line"></span><br><span class="line">BD选项中，如果shouldComponentUpdate()返回值为false，则不会调用componentDidUpdate()</span><br><span class="line"></span><br><span class="line">C选项中，首次渲染不会执行componentDidUpdate()</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<ol start="16">
+<li>关于 Redux，以下说法错误的是?</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A. 唯一改变state的方法就是触发action</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">B. action是一个用于描述即将发生事件的普通对象</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C. 为了描述action如何改变state tree，你需要编写纯的reducers</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D. 整个应用的全局state被储存在一棵object tree中，并且这个object tree只存在于唯一一个store中</span><br></pre></td></tr></table></figure>
+
+<details> 
+<summary>查看答案</summary>
+
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">答案为B</span><br><span class="line">解析：在Redux中，action是一个用于描述已发生事件的普通对象.</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<ol start="17">
+<li>class 组件生命周期方法对应到函数组件和 Hook，以下说法错误的是？</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A. render =&gt; 这是函数组件体本身</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">B. getSnapshotBeforeUpdate 目前没有对应的Hook</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C. constructor =&gt; 函数组件不需要构造函数。你可以通过调用 useState 来初始化 state。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D. componentWillUnmount 目前没有对应的Hook</span><br></pre></td></tr></table></figure>
+
+<details> 
+<summary>查看答案</summary>
+
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">答案为D</span><br><span class="line">解析：useEffect里面返回的函数</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<ol start="18">
+<li>以下关于 ReactDOM.render 说法错误的是?</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A. ReactDOM.render() 会控制你传入容器节点里的内容</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">B. ReactDOM.render() 会修改容器节点以及其子节点</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C. ReactDOM.render() 目前会返回对根组件 ReactComponent 实例的引用</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D. 使用 ReactDOM.render() 对服务端渲染容器进行 hydrate 操作的方式已经被废弃，并且会在 React 17 被移除</span><br></pre></td></tr></table></figure>
+
+<details> 
+<summary>查看答案</summary>
+
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">答案为B</span><br><span class="line">解析：ReactDOM.render() 不会修改容器节点（只会修改容器的子节点）。可以在不覆盖现有子节点的情况下，将组件插入已有的 DOM 节点中。</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<ol start="19">
+<li>关于 Hook 中的 useDebugValue 的作用是？</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A. 获取当前是否在debug模式</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">B. 开启当前函数组件debug模式</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C. 可以在React开发者工具中显示自定义hook的标签</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D. 可以在React开发者工具中给函数组件添加额外的描述</span><br></pre></td></tr></table></figure>
+
+<details> 
+<summary>查看答案</summary>
+
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">答案为C</span><br><span class="line">解析：useDebugValue可用于在React开发者工具中显示自定义Hook的标签。。</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<ol start="20">
+<li>以下关于 ref 说法错误的是?</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A. 当ref属性用于HTML元素时，构造函数中使用React.createRef()创建的ref接收底层DOM元素作为其current属性</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">B. ref是使用React.createRef()创建的，并通过ref属性附加到React元素</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C. 当ref属性用于函数组件时，ref对象接收组件的挂载实例作为其current属性</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D. 当ref属性用于自定义class组件时，ref对象接收组件的挂载实例作为其current属性</span><br></pre></td></tr></table></figure>
+
+<details> 
+<summary>查看答案</summary>
+
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">答案为C</span><br><span class="line">解析：不能在函数组件上使用ref属性，因为它们没有实例。在函数组件上使用ref，需要借助forwardRef。</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<ol start="21">
+<li>关于 Hook 的使用，以下说法中不满足官方使用规则的是?</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A. 不要在循环、条件判断中调用Hook</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">B. 在自定义Hook或其他自定义函数中调用</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C. 在React函数最外层调用Hook</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D. 在React的函数组件中调用Hook</span><br></pre></td></tr></table></figure>
+
+<details> 
+<summary>查看答案</summary>
+
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">答案为C</span><br><span class="line">解析：Hook使用规则：</span><br><span class="line"></span><br><span class="line">1.只能在函数最外层调用 Hook，不要在循环、条件判断或者子函数中调用；</span><br><span class="line"></span><br><span class="line">2.只能在React的函数组件或自定义的Hook中调用 Hook，不要在其他 JavaScript 函数中调用。</span><br></pre></td></tr></table></figure>
+
+</details>
+    
+<ol start="22">
+<li>以下哪个选项不能作为Router组件的history属性值?</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A. createMemoryHistory</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">B. History</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C. hashHistory</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D. browserHistory</span><br></pre></td></tr></table></figure>
+
+<details> 
+<summary>查看答案</summary>
+
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">答案为C</span><br><span class="line">解析：history属性，一共可以设置三种值:browserHistory、hashHistory和createMemoryHistory。</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<ol start="23">
+<li>ReactDOM.createPortal(child, container)函数可以将子节点渲染到存在于父组件以外的 DOM 节点上，那么通过 Portal 进行事件冒泡时，会冒泡到?</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A. 会上冒到子元素插入的DOM节点，一直冒泡至DOM树的根</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">B. 不会上冒</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C. 会上冒到子元素插入的DOM节点，不再继续上冒</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D. 从portal内部触发的事件会一直冒泡至包含React树的祖先</span><br></pre></td></tr></table></figure>
+
+<details> 
+<summary>查看答案</summary>
+
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">答案为C</span><br><span class="line">解析：尽管 portal 可以被放置在 DOM 树中的任何地方，但在任何其他方面，其行为和普通的 React 子节点行为一致。由于 portal 仍存在于 React 树， 且与 DOM 树 中的位置无关，那么无论其子节点是否是 portal，像 context 这样的功能特性都是不变的，包含事件冒泡。</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<ol start="24">
+<li>验证对象是否为  React  元素可以使用（）方法?</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A. React.isValidReactElement</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">B. React.isValidElement</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C. React.isReactElement</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D. React.isElement</span><br></pre></td></tr></table></figure>
+
+<details> 
+<summary>查看答案</summary>
+
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">答案为C</span><br><span class="line">解析：React.isValidElement 验证对象是否为React元素，返回值为true或false。</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<ol start="25">
+<li>StrictMode 组件的作用是?</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A. 作用跟Fragment组件一样，可以一个组件返回多个元素</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">B. 用来突出显示应用程序中潜在问题</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C. 为其后代元素开启严格模式</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D. 为其后代元素触发额外的检查和警告</span><br></pre></td></tr></table></figure>
+
+<details> 
+<summary>查看答案</summary>
+
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">答案为C</span><br><span class="line">解析：与Fragment一样，StrictMode不会渲染任何可见的UI。但是与Fragment不同的是，它为其后代元素触发额外的检查和警告。</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ol>
+<li>请选择下面代码输出 1 的次数</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span><br><span class="line">  <span class="attr">el</span>: <span class="string">&quot;#example&quot;</span>,</span><br><span class="line">  <span class="attr">data</span>: &#123;</span><br><span class="line">    <span class="attr">message</span>: <span class="string">&quot;Hello&quot;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">computed</span>: &#123;</span><br><span class="line">    <span class="attr">test</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span>);</span><br><span class="line">      <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">message</span>;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">created</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">message</span> = <span class="string">&quot;World&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">test</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>解释：因为 vue 的 <code>computed</code> 具有<code>缓存</code>功能。<code>message</code> 只<code>更新了一次</code>，所以 <code>test</code> <code>只触发一次</code>，执行一次 console.log(1)。<br>具体来说，computed 内的 test 函数会被加入到 message 这个响应式数据的依赖视图中，当修改了 message（触发了 message 的 set）之后，test 这个 computed 的 dirty 属性会被设置为 true，当视图渲染的时候，发现 dirty 为 true 了，就会执行 1 次 test 函数以获取最新的值。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://example.com">影风莫</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/10/18/%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AF%95/%E9%94%99%E9%A2%98%E9%9B%86/">http://example.com/2022/10/18/%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AF%95/%E9%94%99%E9%A2%98%E9%9B%86/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">影风の小屋</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%89%8D%E7%AB%AF/">前端</a><a class="post-meta__tags" href="/tags/%E9%94%99%E9%A2%98%E9%9B%86/">错题集</a></div><div class="post_share"><div class="social-share" data-image="https://is.gd/BKfqTS" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.png" target="_blank"><img class="post-qr-code-img" src="/img/loading.gif" data-original="/img/wechat.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/loading.gif" data-original="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/10/20/%E5%89%8D%E7%AB%AF%E6%89%8B%E5%86%99/%E6%89%8B%E5%86%99%E9%A2%98%E6%B1%87%E6%80%BB/" title="手写汇总"><img class="cover" src="/img/loading.gif" data-original="https://is.gd/BKfqTS" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">手写汇总</div></div></a></div><div class="next-post pull-right"><a href="/2022/08/28/html5/%E7%94%9F%E6%88%90%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6/" title="生成任意文件"><img class="cover" src="/img/loading.gif" data-original="https://is.gd/rht8Ij" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">生成任意文件</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/07/31/css/css%E5%BC%B9%E7%AA%97%E5%8A%A8%E7%94%BB/" title="css弹窗动画"><img class="cover" src="/img/loading.gif" data-original="https://is.gd/NScMBX" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-07-31</div><div class="title">css弹窗动画</div></div></a></div><div><a href="/2022/07/31/html5/%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%8F%E5%8A%9F%E8%83%BD/" title="封装class一次性解决实现全屏功能"><img class="cover" src="/img/loading.gif" data-original="https://is.gd/rht8Ij" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-07-31</div><div class="title">封装class一次性解决实现全屏功能</div></div></a></div><div><a href="/2022/08/28/html5/%E7%94%9F%E6%88%90%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6/" title="生成任意文件"><img class="cover" src="/img/loading.gif" data-original="https://is.gd/rht8Ij" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-28</div><div class="title">生成任意文件</div></div></a></div><div><a href="/2022/07/28/javascript/js%E5%AE%9E%E7%8E%B0%E6%8B%96%E6%8B%BD/" title="js实现拖拽功能"><img class="cover" src="/img/loading.gif" data-original="https://is.gd/BKfqTS" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-07-28</div><div class="title">js实现拖拽功能</div></div></a></div><div><a href="/2022/08/01/skill/js%E6%97%B6%E9%97%B4%E6%93%8D%E4%BD%9C%E7%9A%84%E5%BA%94%E7%94%A8/" title="js操作时间的应用"><img class="cover" src="/img/loading.gif" data-original="https://is.gd/HTvRXL" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-01</div><div class="title">js操作时间的应用</div></div></a></div><div><a href="/2022/07/27/skill/%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E7%9A%84JavaScript/" title="一行代码的JavaScript"><img class="cover" src="/img/loading.gif" data-original="https://is.gd/HTvRXL" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-07-27</div><div class="title">一行代码的JavaScript</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/loading.gif" data-original="/img/avatar.webp" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">影风莫</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">27</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">18</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/kangkang123269/hexo-blog"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/kangkang123269" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:2636417147@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://blog.csdn.net/weixin_50789156" target="_blank" title=""><i class="fa fa-address-card"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">这里是公告。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%AA%E4%BA%BA%E9%94%99%E9%A2%98%E9%9B%86"><span class="toc-number">1.</span> <span class="toc-text">个人错题集</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#react"><span class="toc-number">1.1.</span> <span class="toc-text">react</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-number">1.2.</span> <span class="toc-text">其他</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/09/06/learn/dom%E6%89%93%E5%8D%B0PDF%E6%96%B9%E6%A1%88/" title="dom转PDF方案">dom转PDF方案</a><time datetime="2023-09-05T16:00:00.000Z" title="发表于 2023-09-06 00:00:00">2023-09-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/09/06/vue/nextTick/" title="nextTick 原理">nextTick 原理</a><time datetime="2023-09-05T16:00:00.000Z" title="发表于 2023-09-06 00:00:00">2023-09-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/09/06/learn/vue3%E5%AE%9E%E7%8E%B0%E6%B0%B4%E5%8D%B0%E6%96%B9%E6%A1%88/" title="vue3实现水印方案">vue3实现水印方案</a><time datetime="2023-09-05T16:00:00.000Z" title="发表于 2023-09-06 00:00:00">2023-09-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/09/06/util/console/" title="JavaScript console方法">JavaScript console方法</a><time datetime="2023-09-05T16:00:00.000Z" title="发表于 2023-09-06 00:00:00">2023-09-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/09/06/learn/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%88%86%E6%9E%90/" title="性能方案分析">性能方案分析</a><time datetime="2023-09-05T16:00:00.000Z" title="发表于 2023-09-06 00:00:00">2023-09-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/08/01/Vue3%E6%B7%B1%E5%85%A5/%E6%A1%86%E6%9E%B6%E9%9B%8F%E5%BD%A2%E6%90%AD%E5%BB%BA/" title="vue-next-min框架雏形搭建">vue-next-min框架雏形搭建</a><time datetime="2023-07-31T16:00:00.000Z" title="发表于 2023-08-01 00:00:00">2023-08-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/07/31/Vue3%E6%B7%B1%E5%85%A5/%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" title="vue3的一些基本概念">vue3的一些基本概念</a><time datetime="2023-07-30T16:00:00.000Z" title="发表于 2023-07-31 00:00:00">2023-07-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/01/04/%E5%AE%9E%E4%B9%A0%E5%AD%A6%E4%B9%A0/%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF%E8%90%BD%E5%90%8E%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF/" title="本地分支落后远程分支"><img src="/img/loading.gif" data-original="https://is.gd/Up9WrG" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="本地分支落后远程分支"/></a><div class="content"><a class="title" href="/2023/01/04/%E5%AE%9E%E4%B9%A0%E5%AD%A6%E4%B9%A0/%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF%E8%90%BD%E5%90%8E%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF/" title="本地分支落后远程分支">本地分支落后远程分支</a><time datetime="2023-01-03T16:00:00.000Z" title="发表于 2023-01-04 00:00:00">2023-01-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/30/wepack/webpack%E4%B8%80%E4%BA%9B%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8/" title="在Vue中使用keep-alive"><img src="/img/loading.gif" data-original="https://is.gd/ceNaY1" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="在Vue中使用keep-alive"/></a><div class="content"><a class="title" href="/2022/12/30/wepack/webpack%E4%B8%80%E4%BA%9B%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8/" title="在Vue中使用keep-alive">在Vue中使用keep-alive</a><time datetime="2022-12-29T16:00:00.000Z" title="发表于 2022-12-30 00:00:00">2022-12-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/11/02/Vue3%E6%B7%B1%E5%85%A5/%E6%96%B0%E7%89%B9%E6%80%A7/" title="Vue3 新特性"><img src="/img/loading.gif" data-original="https://is.gd/Bp0B59" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Vue3 新特性"/></a><div class="content"><a class="title" href="/2022/11/02/Vue3%E6%B7%B1%E5%85%A5/%E6%96%B0%E7%89%B9%E6%80%A7/" title="Vue3 新特性">Vue3 新特性</a><time datetime="2022-11-01T16:00:00.000Z" title="发表于 2022-11-02 00:00:00">2022-11-02</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By 影风莫</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: 'da1e20f42e32d51fea42',
+      clientSecret: '3f93152b894d820b82de4844c88c1e37187ccdab',
+      repo: 'kangkang123269.github.io',
+      owner: 'kangkang123269',
+      admin: ['kangkang123269'],
+      id: '07d845771d387684db4aa5ff49da02ad',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+    getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.textContent= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !true) {
+  if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><div class="aplayer no-destroy" data-id="7559380968" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false" data-lrcType="-1"> </div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="true" data-text="富强,民主,文明,和谐,平等,公正,法治,爱国,敬业,诚信,友善" data-fontsize="15px" data-random="true" async="async"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(r){r.imageLazyLoadSetting.processImages=t;var e=r.imageLazyLoadSetting.isSPA,n=r.imageLazyLoadSetting.preloadRatio||1,c=a();function a(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){e&&(c=a());for(var t,o=0;o<c.length;o++)0<=(t=(t=c[o]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(r.innerHeight*n||document.documentElement.clientHeight*n)&&function(){var t,e,n,a,i=c[o];e=function(){c=c.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,a=t.getAttribute("data-original"),n.onload=function(){t.src=a,t.removeAttribute("data-original"),e&&e()},t.src!==a&&(n.src=a))}()}function i(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",i),r.addEventListener("resize",i),r.addEventListener("orientationchange",i)}(this);</script></body></html>
