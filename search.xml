@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>github项目学习方法</title>
+      <link href="/2024/05/31/github%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0/utils/"/>
+      <url>/2024/05/31/github%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0/utils/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="学习-github-项目的方法"><a href="#学习-github-项目的方法" class="headerlink" title="学习 github 项目的方法"></a>学习 github 项目的方法</h1><h3 id="1、判断是否移动端设备"><a href="#1、判断是否移动端设备" class="headerlink" title="1、判断是否移动端设备"></a>1、判断是否移动端设备</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">isMobile</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> userAgentInfo = navigator.<span class="property">userAgent</span>;</span><br><span class="line">  <span class="keyword">const</span> <span class="title class_">Agents</span> = [</span><br><span class="line">    <span class="string">&quot;Android&quot;</span>,</span><br><span class="line">    <span class="string">&quot;iPhone&quot;</span>,</span><br><span class="line">    <span class="string">&quot;SymbianOS&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Windows Phone&quot;</span>,</span><br><span class="line">    <span class="string">&quot;iPad&quot;</span>,</span><br><span class="line">    <span class="string">&quot;iPod&quot;</span>,</span><br><span class="line">  ];</span><br><span class="line">  <span class="keyword">let</span> flag = <span class="literal">false</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> v = <span class="number">0</span>; v &lt; <span class="title class_">Agents</span>.<span class="property">length</span>; v++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (userAgentInfo.<span class="title function_">indexOf</span>(<span class="title class_">Agents</span>[v]) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      flag = <span class="literal">true</span>;</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">const</span> w = <span class="variable language_">document</span>.<span class="property">body</span> &amp;&amp; <span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">clientWidth</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (w &gt; <span class="number">960</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (w &lt; <span class="number">480</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> flag;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> github </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> github </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>dom转PDF方案</title>
       <link href="/2023/09/06/learn/dom%E6%89%93%E5%8D%B0PDF%E6%96%B9%E6%A1%88/"/>
       <url>/2023/09/06/learn/dom%E6%89%93%E5%8D%B0PDF%E6%96%B9%E6%A1%88/</url>
