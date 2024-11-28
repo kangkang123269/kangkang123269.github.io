@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>给你的一封信</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000;
+            font-family: "Microsoft YaHei", sans-serif;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .background-slideshow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .background-slideshow img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+            animation: zoomEffect 20s ease-in-out infinite;
+        }
+
+        @keyframes zoomEffect {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .letter-container {
+            background: rgba(255, 255, 255, 0.4);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            max-width: 800px;
+            width: 90%;
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(5px);
+            transform: translateY(50px);
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .heart-decoration {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ff6b6b;
+            transform: rotate(45deg);
+            animation: float 3s infinite;
+            z-index: 2;
+        }
+
+        .heart-decoration::before,
+        .heart-decoration::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ff6b6b;
+            border-radius: 50%;
+        }
+
+        .heart-decoration::before {
+            left: -10px;
+        }
+
+        .heart-decoration::after {
+            top: -10px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: rotate(45deg) translate(0, 0); }
+            50% { transform: rotate(45deg) translate(0, -10px); }
+        }
+
+        .letter-content {
+            line-height: 1.8;
+            color: #000;
+            text-align: justify;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            text-shadow: 0 0 2px rgba(255, 255, 255, 0.8);
+        }
+
+        .signature {
+            text-align: right;
+            font-style: italic;
+            color: #333;
+            margin-top: 30px;
+            text-shadow: 0 0 2px rgba(255, 255, 255, 0.8);
+        }
+
+        .date {
+            text-align: right;
+            color: #333;
+            font-size: 0.9em;
+            margin-top: 10px;
+            text-shadow: 0 0 2px rgba(255, 255, 255, 0.8);
+        }
+
+        .time {
+            text-align: right;
+            color: #ff4b4b;
+            font-size: 1.1em;
+            margin-top: 5px;
+            font-weight: bold;
+            text-shadow: 0 0 2px rgba(255, 255, 255, 0.8);
+        }
+
+        h1 {
+            color: #ff4b4b;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.8em;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+        }
+
+        .letter-content p:first-letter {
+            font-size: 1.2em;
+            color: #ff4b4b;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+        }
+
+        .heart-1 { top: 10px; right: 20px; }
+        .heart-2 { bottom: 20px; left: 30px; }
+        .heart-3 { top: 50%; right: 40px; }
+
+        p {
+            text-indent: 2em;
+            margin: 15px 0;
+        }
+
+        @media (max-width: 480px) {
+            .letter-container {
+                padding: 20px;
+                margin: 10px;
+            }
+            h1 {
+                font-size: 1.5em;
+            }
+            .letter-content {
+                padding: 15px;
+            }
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-slideshow">
+        <img src="http://api.btstu.cn/sjbz/?lx=meizi" alt="背景1">
+        <img src="http://api.btstu.cn/sjbz/?lx=m_meizi" alt="背景2">
+        <img src="http://api.btstu.cn/sjbz/?lx=meizi" alt="背景3">
+        <img src="http://api.btstu.cn/sjbz/?lx=meizi" alt="背景4">
+    </div>
+    <div class="overlay"></div>
+    
+    <div class="letter-container">
+        <div class="heart-decoration heart-1"></div>
+        <div class="heart-decoration heart-2"></div>
+        <div class="heart-decoration heart-3"></div>
+        
+        <h1>亲爱的你</h1>
+        
+        <div class="letter-content">
+            <p>我爱你一生一世，这不是一句轻易说出的誓言，而是我深思熟虑后的坚定承诺。从遇见你的那一刻起，我就知道你就是我要等的那个人。</p>
+            
+            <p>一生有多长？大概就是早晨睁开眼看到你的笑容，深夜相拥入眠时的温暖，春天一起看花开，秋天共赏满天星光。一世有多远？大概就是牵着你的手，一直走到白发苍苍。</p>
+            
+            <p>也许生活不会永远一帆风顺，但有你在身边，每一个平凡的日子都变得特别而美好。我愿意用我的一生，珍惜你、疼爱你、保护你，让你成为这世界上最幸福的人。</p>
+            
+            <p>时光飞逝，岁月流转，但我对你的爱永远不变。我期待着和你一起经历生命中的每一个精彩瞬间，共同编织属于我们的幸福故事。</p>
+            
+            <p>愿我们的爱情，如高山般巍峨，似海洋般宽广，像星辰般永恒。让我用一生的时间，证明我对你的承诺：爱你一生，陪你一世。</p>
+        </div>
+        
+        <div class="signature">
+            永远爱你的人
+        </div>
+        
+        <div class="date" id="currentDate"></div>
+        <div class="time" id="currentTime"></div>
+    </div>
+
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+            
+            // 更新日期
+            const dateOptions = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' };
+            document.getElementById('currentDate').textContent = now.toLocaleDateString('zh-CN', dateOptions);
+            
+            // 更新时间
+            const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+            document.getElementById('currentTime').textContent = now.toLocaleTimeString('zh-CN', timeOptions);
+        }
+
+        // 立即更新一次
+        updateDateTime();
+        
+        // 每秒更新一次
+        setInterval(updateDateTime, 1000);
+
+        // 背景图片轮播
+        const images = document.querySelectorAll('.background-slideshow img');
+        let currentImage = 0;
+
+        function showNextImage() {
+            images[currentImage].style.opacity = '0';
+            currentImage = (currentImage + 1) % images.length;
+            images[currentImage].style.opacity = '1';
+        }
+
+        // 显示第一张图片
+        images[0].style.opacity = '1';
+        
+        // 每8秒切换一次图片
+        setInterval(showNextImage, 8000);
+    </script>
+</body>
+</html>
