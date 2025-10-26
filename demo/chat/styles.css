@@ -15,39 +15,43 @@ body {
 .container {
     max-width: 900px;
     margin: 0 auto;
-    padding: 32px 24px;
+    padding: 16px 24px;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 header {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 header h1 {
     color: #2c3e50;
     font-size: 2.2em;
     font-weight: 700;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
     letter-spacing: -0.02em;
 }
 
 .connection-section {
     background: white;
     border-radius: 12px;
-    padding: 32px;
-    margin-bottom: 24px;
+    padding: 20px;
+    margin-bottom: 16px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.08);
     border: 1px solid rgba(255,255,255,0.2);
+    transition: all 0.3s ease-in-out;
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .connection-info {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    margin-bottom: 24px;
+    gap: 16px;
+    margin-bottom: 16px;
 }
 
 .your-id, .connect-to {
@@ -132,6 +136,9 @@ header h1 {
     box-shadow: 0 4px 20px rgba(0,0,0,0.08);
     border: 1px solid rgba(255,255,255,0.2);
     overflow: hidden;
+    min-height: 0; /* 允许flex子元素缩小 */
+    margin-bottom: 90px; /* 为fixed输入框留出空间 */
+    transition: all 0.3s ease-in-out;
 }
 
 .chat-messages {
@@ -139,59 +146,107 @@ header h1 {
     padding: 24px;
     overflow-y: auto;
     background: #fafbfc;
+    min-height: 0; /* 允许flex子元素缩小 */
+    scroll-behavior: smooth; /* 平滑滚动 */
 }
 
 .message {
-    margin-bottom: 16px;
-    padding: 14px 18px;
-    border-radius: 16px;
+    margin-bottom: 18px;
+    padding: 16px 20px;
+    border-radius: 18px;
     max-width: 75%;
     word-wrap: break-word;
     font-size: 15px;
-    line-height: 1.5;
-    animation: messageSlideIn 0.3s ease-out;
+    line-height: 1.6;
+    animation: messageSlideIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     position: relative;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(10px);
+}
+
+.message:hover {
+    transform: translateY(-1px);
 }
 
 .message.own {
-    background: #3b82f6;
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
     color: white;
     margin-left: auto;
     border-bottom-right-radius: 6px;
-    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+    box-shadow: 0 4px 16px rgba(59, 130, 246, 0.25), 0 2px 8px rgba(59, 130, 246, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.message.own:hover {
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.35), 0 4px 12px rgba(59, 130, 246, 0.2);
 }
 
 .message.other {
-    background: white;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
     color: #374151;
-    border: 1px solid #f1f5f9;
+    border: 1px solid rgba(148, 163, 184, 0.2);
     border-bottom-left-radius: 6px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+    backdrop-filter: blur(10px);
+}
+
+.message.other:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
 .message-header {
     font-size: 12px;
-    font-weight: 500;
-    margin-bottom: 4px;
-    opacity: 0.7;
+    font-weight: 600;
+    margin-bottom: 6px;
+    opacity: 0.8;
+    letter-spacing: 0.02em;
 }
 
 .message.own .message-header {
     text-align: right;
-    color: rgba(255,255,255,0.8);
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .message.other .message-header {
-    color: #9ca3af;
+    color: #64748b;
+}
+
+.message-content {
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.message-time {
+    font-size: 10px;
+    opacity: 0.6;
+    margin-top: 4px;
+    font-weight: 400;
+}
+
+.message.own .message-time {
+    text-align: right;
+}
+
+.message.other .message-time {
+    text-align: left;
 }
 
 .message-input {
-    padding: 24px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px 24px;
     background: white;
     border-top: 1px solid #f1f5f9;
     display: flex;
     gap: 12px;
     align-items: flex-end;
+    box-shadow: 0 -2px 16px rgba(0,0,0,0.08);
+    z-index: 1000;
+    max-width: 900px;
+    margin: 0 auto;
+    border-radius: 12px 12px 0 0;
 }
 
 .input-actions {
@@ -400,7 +455,7 @@ header h1 {
 /* 表情包选择器样式 */
 .emoji-picker {
     position: absolute;
-    bottom: 90px;
+    bottom: 100px;
     left: 24px;
     right: 24px;
     background: white;
@@ -410,7 +465,7 @@ header h1 {
     display: none;
     max-height: 220px;
     overflow-y: auto;
-    z-index: 1000;
+    z-index: 1001;
     border: 1px solid #f1f5f9;
 }
 
@@ -508,12 +563,156 @@ header h1 {
     cursor: pointer;
     transition: all 0.2s ease;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    object-fit: cover;
 }
 
 .image-preview:hover {
     transform: scale(1.02);
     box-shadow: 0 4px 16px rgba(0,0,0,0.15);
 }
+
+/* 媒体预览样式 */
+.media-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 300px;
+}
+
+.media-preview video,
+.media-preview audio {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* 图片预览模态框 */
+.image-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    backdrop-filter: blur(4px);
+    animation: modalFadeIn 0.3s ease-out;
+}
+
+.image-modal-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.image-modal-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(4px);
+}
+
+.image-modal-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.image-modal-preview {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    animation: imageZoomIn 0.3s ease-out;
+}
+
+.image-modal-download {
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.image-modal-download:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        backdrop-filter: blur(0);
+    }
+    to {
+        opacity: 1;
+        backdrop-filter: blur(4px);
+    }
+}
+
+@keyframes imageZoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* 空状态样式 */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #9ca3af;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.empty-icon {
+    font-size: 4em;
+    margin-bottom: 16px;
+    opacity: 0.5;
+}
+
+.empty-text {
+    font-size: 16px;
+    font-weight: 500;
+    color: #6b7280;
+    margin-bottom: 8px;
+}
+
+    .empty-hint {
+        font-size: 12px;
+        color: #9ca3af;
+        opacity: 0.8;
+        margin-top: 4px;
+    }
 
 /* 网络状态指示器 */
 .network-status {
@@ -527,6 +726,18 @@ header h1 {
     z-index: 1000;
     backdrop-filter: blur(8px);
     border: 1px solid rgba(255,255,255,0.2);
+    animation: networkStatusSlideIn 0.3s ease-out;
+}
+
+@keyframes networkStatusSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .network-status.local {
@@ -542,77 +753,82 @@ header h1 {
 /* 响应式设计 */
 @media (max-width: 768px) {
     .container {
-        padding: 20px 16px;
+        padding: 16px 12px;
+        min-height: 100vh;
+        max-width: 100%;
+    }
+
+    header {
+        margin-bottom: 20px;
     }
 
     header h1 {
-        font-size: 1.8em;
+        font-size: 1.7em;
+        margin-bottom: 4px;
     }
 
     .connection-section {
-        padding: 24px 20px;
+        padding: 20px 16px;
+        margin-bottom: 16px;
     }
 
     .connection-info {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 16px;
+        margin-bottom: 20px;
+    }
+
+    .your-id, .connect-to {
+        margin-bottom: 0;
+    }
+
+    .your-id input, .connect-to input {
+        padding: 12px 14px;
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    #copy-id, #connect-btn {
+        padding: 10px 16px;
+        font-size: 13px;
+        width: 100%;
+    }
+
+    .chat-section {
+        border-radius: 8px;
+        height: calc(100vh - 180px);
+        min-height: 300px;
+        margin-bottom: 80px;
     }
 
     .chat-messages {
-        padding: 20px;
+        padding: 16px;
+        height: calc(100% - 70px);
     }
 
     .message {
-        max-width: 85%;
+        max-width: 90%;
         font-size: 14px;
-        padding: 12px 16px;
+        padding: 10px 14px;
+        margin-bottom: 12px;
+        border-radius: 14px;
     }
 
-    .emoji-picker {
-        left: 16px;
-        right: 16px;
-        bottom: 80px;
-        max-height: 180px;
-        padding: 16px;
+    .message.own {
+        border-bottom-right-radius: 4px;
     }
 
-    .emoji-grid {
-        grid-template-columns: repeat(auto-fill, minmax(32px, 1fr));
-    }
-
-    .emoji-item {
-        width: 32px;
-        height: 32px;
-        font-size: 18px;
-    }
-
-    .image-preview {
-        max-width: 180px;
-        max-height: 180px;
-    }
-}
-
-@media (max-width: 480px) {
-    .container {
-        padding: 16px 12px;
-    }
-
-    header h1 {
-        font-size: 1.6em;
-    }
-
-    .connection-section {
-        padding: 20px 16px;
+    .message.other {
+        border-bottom-left-radius: 4px;
     }
 
     .message-input {
-        padding: 20px 16px;
-        gap: 10px;
-    }
-
-    #message-input {
-        font-size: 16px; /* 防止iOS缩放 */
-        min-height: 40px;
+        padding: 16px 12px;
+        gap: 8px;
+        left: 12px;
+        right: 12px;
+        max-width: none;
+        border-radius: 8px 8px 0 0;
     }
 
     .input-actions {
@@ -622,18 +838,260 @@ header h1 {
     .action-btn {
         width: 36px;
         height: 36px;
-        font-size: 15px;
+        font-size: 14px;
+    }
+
+    #message-input {
+        font-size: 16px; /* 防止iOS缩放 */
+        padding: 10px 14px;
+        min-height: 36px;
+        border-radius: 10px;
     }
 
     #send-btn {
-        padding: 12px 20px;
+        padding: 10px 18px;
+        font-size: 13px;
+        border-radius: 10px;
+        min-width: 60px;
+    }
+
+    .emoji-picker {
+        left: 12px;
+        right: 12px;
+        bottom: 90px;
+        max-height: 160px;
+        padding: 12px;
+        border-radius: 10px;
+    }
+
+    .emoji-grid {
+        grid-template-columns: repeat(auto-fill, minmax(28px, 1fr));
+        gap: 6px;
+    }
+
+    .emoji-item {
+        width: 28px;
+        height: 28px;
+        font-size: 16px;
+        border-radius: 6px;
+    }
+
+    .image-preview {
+        max-width: 160px;
+        max-height: 160px;
+        border-radius: 6px;
+    }
+
+    .file-info {
+        padding: 10px 12px;
+        border-radius: 6px;
         font-size: 13px;
     }
 
-    .network-status {
-        top: 12px;
-        left: 12px;
-        padding: 6px 10px;
+    .file-name {
+        font-size: 13px;
+    }
+
+    .file-download {
+        padding: 4px 8px;
         font-size: 11px;
+        border-radius: 4px;
+    }
+
+    .network-status {
+        top: 8px;
+        left: 8px;
+        padding: 4px 8px;
+        font-size: 10px;
+        border-radius: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 12px 8px;
+    }
+
+    header {
+        margin-bottom: 16px;
+    }
+
+    header h1 {
+        font-size: 1.5em;
+    }
+
+    header p {
+        font-size: 14px;
+    }
+
+    .connection-section {
+        padding: 16px 12px;
+        margin-bottom: 12px;
+    }
+
+    .connection-status {
+        padding: 12px 16px;
+        font-size: 14px;
+    }
+
+    #status {
+        font-size: 14px;
+    }
+
+    .chat-section {
+        height: calc(100vh - 160px);
+        min-height: 280px;
+        margin-bottom: 70px;
+    }
+
+    .chat-messages {
+        padding: 12px;
+        height: calc(100% - 60px);
+    }
+
+    .message {
+        max-width: 95%;
+        font-size: 13px;
+        padding: 8px 12px;
+        margin-bottom: 10px;
+        border-radius: 12px;
+    }
+
+    .message.own {
+        border-bottom-right-radius: 3px;
+    }
+
+    .message.other {
+        border-bottom-left-radius: 3px;
+    }
+
+    .message-header {
+        font-size: 11px;
+        margin-bottom: 2px;
+    }
+
+    .message-input {
+        padding: 12px 8px;
+        gap: 6px;
+        left: 8px;
+        right: 8px;
+        max-width: none;
+        border-radius: 6px 6px 0 0;
+    }
+
+    #message-input {
+        font-size: 16px; /* 防止iOS缩放 */
+        padding: 8px 12px;
+        min-height: 32px;
+        border-radius: 8px;
+    }
+
+    .input-actions {
+        gap: 4px;
+    }
+
+    .action-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 13px;
+        border-radius: 8px;
+    }
+
+    #send-btn {
+        padding: 8px 14px;
+        font-size: 12px;
+        border-radius: 8px;
+        min-width: 50px;
+    }
+
+    .emoji-picker {
+        left: 8px;
+        right: 8px;
+        bottom: 80px;
+        max-height: 140px;
+        padding: 10px;
+        border-radius: 8px;
+    }
+
+    .emoji-grid {
+        grid-template-columns: repeat(auto-fill, minmax(26px, 1fr));
+        gap: 4px;
+    }
+
+    .emoji-item {
+        width: 26px;
+        height: 26px;
+        font-size: 14px;
+        border-radius: 5px;
+    }
+
+    .image-preview {
+        max-width: 140px;
+        max-height: 140px;
+        border-radius: 5px;
+    }
+
+    .file-info {
+        padding: 8px 10px;
+        border-radius: 5px;
+        font-size: 12px;
+    }
+
+    .file-name {
+        font-size: 12px;
+        word-break: break-word;
+    }
+
+    .file-size {
+        font-size: 10px;
+    }
+
+    .file-download {
+        padding: 3px 6px;
+        font-size: 10px;
+        border-radius: 3px;
+    }
+
+    .network-status {
+        top: 6px;
+        left: 6px;
+        padding: 3px 6px;
+        font-size: 9px;
+        border-radius: 10px;
+    }
+
+    .empty-icon {
+        font-size: 3em;
+        margin-bottom: 12px;
+    }
+
+    .empty-text {
+        font-size: 14px;
+    }
+
+    /* 移动端模态框样式 */
+    .image-modal-content {
+        max-width: 95vw;
+        max-height: 95vh;
+        gap: 12px;
+    }
+
+    .image-modal-close {
+        top: -35px;
+        width: 28px;
+        height: 28px;
+        font-size: 18px;
+    }
+
+    .image-modal-preview {
+        max-width: 100%;
+        max-height: 70vh;
+        border-radius: 6px;
+    }
+
+    .image-modal-download {
+        padding: 8px 16px;
+        font-size: 14px;
+        border-radius: 6px;
     }
 }

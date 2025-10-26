@@ -23,6 +23,9 @@ class PeerChat {
         this.sendBtn = document.getElementById('send-btn');
         this.autoConnectInfo = document.getElementById('auto-connect-info');
         this.manualConnectDiv = document.getElementById('manual-connect');
+        this.emptyState = document.getElementById('empty-state');
+        this.connectionSection = document.querySelector('.connection-section');
+        this.chatSection = document.querySelector('.chat-section');
 
         // 新功能元素
         this.emojiBtn = document.getElementById('emoji-btn');
@@ -37,6 +40,9 @@ class PeerChat {
         // 网络状态
         this.isLocalNetwork = false;
         this.networkStatus = null;
+
+        // 初始时显示连接部分
+        this.showConnectionSection();
     }
 
     parseUrlParameters() {
@@ -239,6 +245,7 @@ class PeerChat {
                     // 有邀请链接，隐藏手动连接，显示自动连接信息
                     this.manualConnectDiv.style.display = 'none';
                     this.autoConnectInfo.style.display = 'block';
+                    this.showConnectionSection();
                     this.updateStatus('ready');
                     this.statusDiv.textContent = '准备就绪，尝试自动连接...';
 
@@ -250,6 +257,7 @@ class PeerChat {
                     // 没有邀请链接，显示手动连接选项
                     this.manualConnectDiv.style.display = 'block';
                     this.autoConnectInfo.style.display = 'none';
+                    this.showConnectionSection();
                 }
 
                 // 显示测试自动连接链接
@@ -286,7 +294,7 @@ class PeerChat {
         this.showNotification('已连接到 ' + conn.peer, 'success');
         this.enableChat();
 
-        // 隐藏自动连接信息
+        // 隐藏自动连接信息和连接部分
         if (this.autoConnectInfo) {
             this.autoConnectInfo.style.display = 'none';
         }
@@ -319,7 +327,7 @@ class PeerChat {
                 this.showNotification('连接成功!', 'success');
                 this.enableChat();
 
-                // 隐藏自动连接信息
+                // 隐藏自动连接信息和连接部分
                 this.autoConnectInfo.style.display = 'none';
 
                 // 检测网络类型
@@ -333,9 +341,10 @@ class PeerChat {
                 this.updateStatus('disconnected');
                 this.showNotification('自动连接失败: ' + err.message + '。你可以手动输入ID连接。', 'error');
 
-                // 显示手动连接选项
+                // 显示手动连接选项和连接部分
                 this.manualConnectDiv.style.display = 'block';
                 this.autoConnectInfo.style.display = 'none';
+                this.showConnectionSection();
                 this.statusDiv.textContent = '连接失败，可以手动输入对方ID连接';
             });
 
@@ -357,12 +366,14 @@ class PeerChat {
             this.updateStatus('disconnected');
             this.showNotification('连接已断开', 'warning');
             this.disableChat();
+            this.showConnectionSection();
         });
 
         this.connection.on('error', (err) => {
             console.error('连接错误:', err);
             this.updateStatus('error');
             this.showNotification('连接错误: ' + err.message, 'error');
+            this.showConnectionSection();
         });
     }
 
@@ -372,15 +383,16 @@ class PeerChat {
 
         // 如果有消息内容，发送文本消息
         if (message) {
+            const timestamp = new Date().toISOString();
             const messageData = {
                 type: 'message',
                 content: message,
-                timestamp: new Date().toISOString(),
+                timestamp: timestamp,
                 sender: this.myId
             };
 
             this.connection.send(messageData);
-            this.displayMessage(message, true);
+            this.displayMessage(message, true, timestamp);
             this.messageInput.value = '';
         }
 
@@ -419,7 +431,7 @@ class PeerChat {
 
     receiveMessage(data) {
         if (data.type === 'message') {
-            this.displayMessage(data.content, false);
+            this.displayMessage(data.content, false, data.timestamp);
         } else if (data.type === 'file') {
             this.displayFile(data, false);
         } else if (data.type === 'ping') {
@@ -436,7 +448,7 @@ class PeerChat {
         }
     }
 
-    displayMessage(content, isOwn) {
+    displayMessage(content, isOwn, timestamp = null) {
         const messageDiv = document.createElement('div');
         messageDiv.className = `message ${isOwn ? 'own' : 'other'}`;
 
@@ -445,13 +457,24 @@ class PeerChat {
         headerDiv.textContent = isOwn ? '我' : '对方';
 
         const contentDiv = document.createElement('div');
+        contentDiv.className = 'message-content';
         contentDiv.innerHTML = this.parseMessageContent(content);
+
+        const timeDiv = document.createElement('div');
+        timeDiv.className = 'message-time';
+        const messageTime = timestamp ? new Date(timestamp) : new Date();
+        timeDiv.textContent = messageTime.toLocaleTimeString('zh-CN', {
+            hour: '2-digit',
+            minute: '2-digit'
+        });
 
         messageDiv.appendChild(headerDiv);
         messageDiv.appendChild(contentDiv);
+        messageDiv.appendChild(timeDiv);
 
         this.chatMessages.appendChild(messageDiv);
         this.chatMessages.scrollTop = this.chatMessages.scrollHeight;
+        this.hideEmptyState();
     }
 
     parseMessageContent(content) {
@@ -469,6 +492,7 @@ class PeerChat {
         headerDiv.textContent = isOwn ? '我' : '对方';
 
         const contentDiv = document.createElement('div');
+        contentDiv.className = 'message-content';
 
         if (fileData.fileType && fileData.fileType.startsWith('image/')) {
             // 图片文件
@@ -476,49 +500,136 @@ class PeerChat {
             img.src = fileData.content;
             img.className = 'image-preview';
             img.onclick = () => {
-                window.open(fileData.content, '_blank');
+                this.openImagePreview(fileData.content, fileData.fileName);
+            };
+            img.onerror = () => {
+                // 图片加载失败时显示文件信息
+                this.displayFileError(contentDiv, fileData, isOwn);
             };
             contentDiv.appendChild(img);
+        } else if (fileData.fileType && (fileData.fileType.startsWith('video/') || fileData.fileType.startsWith('audio/'))) {
+            // 视频和音频文件
+            const mediaContainer = document.createElement('div');
+            mediaContainer.className = 'media-preview';
+
+            const mediaElement = document.createElement(fileData.fileType.startsWith('video/') ? 'video' : 'audio');
+            mediaElement.src = fileData.content;
+            mediaElement.controls = true;
+            mediaElement.style.maxWidth = '100%';
+            mediaElement.style.borderRadius = '8px';
+
+            const fileInfo = this.createFileInfo(fileData);
+            mediaContainer.appendChild(fileInfo);
+            mediaContainer.appendChild(mediaElement);
+            contentDiv.appendChild(mediaContainer);
         } else {
             // 其他文件
-            const fileInfo = document.createElement('div');
-            fileInfo.className = 'file-message';
-
-            const infoDiv = document.createElement('div');
-            infoDiv.className = 'file-info';
-
-            const iconDiv = document.createElement('div');
-            iconDiv.className = 'file-icon';
-            iconDiv.textContent = this.getFileIcon(fileData.fileType);
-
-            const nameDiv = document.createElement('div');
-            nameDiv.className = 'file-name';
-            nameDiv.textContent = fileData.fileName;
-
-            const sizeDiv = document.createElement('div');
-            sizeDiv.className = 'file-size';
-            sizeDiv.textContent = this.formatFileSize(fileData.fileSize);
-
-            const downloadDiv = document.createElement('a');
-            downloadDiv.className = 'file-download';
-            downloadDiv.href = fileData.content;
-            downloadDiv.download = fileData.fileName;
-            downloadDiv.textContent = '下载';
-
-            infoDiv.appendChild(iconDiv);
-            infoDiv.appendChild(nameDiv);
-            infoDiv.appendChild(sizeDiv);
-            infoDiv.appendChild(downloadDiv);
-
-            fileInfo.appendChild(infoDiv);
+            const fileInfo = this.createFileInfo(fileData);
             contentDiv.appendChild(fileInfo);
         }
 
+        const timeDiv = document.createElement('div');
+        timeDiv.className = 'message-time';
+        timeDiv.textContent = new Date().toLocaleTimeString('zh-CN', {
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+
         messageDiv.appendChild(headerDiv);
         messageDiv.appendChild(contentDiv);
+        messageDiv.appendChild(timeDiv);
 
         this.chatMessages.appendChild(messageDiv);
         this.chatMessages.scrollTop = this.chatMessages.scrollHeight;
+        this.hideEmptyState();
+    }
+
+    createFileInfo(fileData) {
+        const fileInfo = document.createElement('div');
+        fileInfo.className = 'file-message';
+
+        const infoDiv = document.createElement('div');
+        infoDiv.className = 'file-info';
+
+        const iconDiv = document.createElement('div');
+        iconDiv.className = 'file-icon';
+        iconDiv.textContent = this.getFileIcon(fileData.fileType);
+
+        const nameDiv = document.createElement('div');
+        nameDiv.className = 'file-name';
+        nameDiv.textContent = fileData.fileName;
+        nameDiv.title = fileData.fileName; // 添加完整文件名提示
+
+        const sizeDiv = document.createElement('div');
+        sizeDiv.className = 'file-size';
+        sizeDiv.textContent = this.formatFileSize(fileData.fileSize);
+
+        const downloadDiv = document.createElement('a');
+        downloadDiv.className = 'file-download';
+        downloadDiv.href = fileData.content;
+        downloadDiv.download = fileData.fileName;
+        downloadDiv.textContent = '下载';
+        downloadDiv.onclick = (e) => {
+            // 添加下载反馈
+            this.showNotification(`正在下载 ${fileData.fileName}`, 'info');
+        };
+
+        infoDiv.appendChild(iconDiv);
+        infoDiv.appendChild(nameDiv);
+        infoDiv.appendChild(sizeDiv);
+        infoDiv.appendChild(downloadDiv);
+
+        fileInfo.appendChild(infoDiv);
+        return fileInfo;
+    }
+
+    displayFileError(contentDiv, fileData, isOwn) {
+        const fileInfo = this.createFileInfo(fileData);
+        contentDiv.innerHTML = '';
+        contentDiv.appendChild(fileInfo);
+    }
+
+    openImagePreview(imageSrc, fileName) {
+        // 创建全屏图片预览模态框
+        const modal = document.createElement('div');
+        modal.className = 'image-modal';
+
+        const modalContent = document.createElement('div');
+        modalContent.className = 'image-modal-content';
+
+        const closeBtn = document.createElement('button');
+        closeBtn.className = 'image-modal-close';
+        closeBtn.innerHTML = '×';
+        closeBtn.onclick = () => {
+            document.body.removeChild(modal);
+        };
+
+        const img = document.createElement('img');
+        img.src = imageSrc;
+        img.className = 'image-modal-preview';
+        img.onerror = () => {
+            this.showNotification('图片加载失败', 'error');
+            document.body.removeChild(modal);
+        };
+
+        const downloadBtn = document.createElement('a');
+        downloadBtn.className = 'image-modal-download';
+        downloadBtn.href = imageSrc;
+        downloadBtn.download = fileName;
+        downloadBtn.textContent = '下载原图';
+
+        modalContent.appendChild(closeBtn);
+        modalContent.appendChild(img);
+        modalContent.appendChild(downloadBtn);
+        modal.appendChild(modalContent);
+        document.body.appendChild(modal);
+
+        // 点击模态框背景关闭
+        modal.onclick = (e) => {
+            if (e.target === modal) {
+                document.body.removeChild(modal);
+            }
+        };
     }
 
     getFileIcon(fileType) {
@@ -574,6 +685,8 @@ class PeerChat {
         if (this.emojiBtn) this.emojiBtn.disabled = false;
         if (this.fileBtn) this.fileBtn.disabled = false;
         this.messageInput.focus();
+        this.hideEmptyState();
+        this.hideConnectionSection();
     }
 
     disableChat() {
@@ -581,6 +694,56 @@ class PeerChat {
         this.sendBtn.disabled = true;
         if (this.emojiBtn) this.emojiBtn.disabled = true;
         if (this.fileBtn) this.fileBtn.disabled = true;
+        this.showEmptyState();
+        this.showConnectionSection();
+    }
+
+    hideConnectionSection() {
+        if (this.connectionSection) {
+            this.connectionSection.style.opacity = '0';
+            this.connectionSection.style.transform = 'translateY(-20px)';
+            setTimeout(() => {
+                this.connectionSection.style.display = 'none';
+                this.adjustChatSection();
+            }, 300);
+        }
+    }
+
+    showConnectionSection() {
+        if (this.connectionSection) {
+            this.connectionSection.style.display = 'block';
+            // 强制重排，确保动画生效
+            this.connectionSection.offsetHeight;
+            this.connectionSection.style.opacity = '1';
+            this.connectionSection.style.transform = 'translateY(0)';
+            this.adjustChatSection();
+        }
+    }
+
+    adjustChatSection() {
+        if (this.chatSection) {
+            // 强制重排，让flex重新计算
+            this.chatSection.style.height = 'auto';
+            setTimeout(() => {
+                this.chatSection.style.height = '';
+            }, 10);
+        }
+    }
+
+    showEmptyState() {
+        if (this.emptyState) {
+            // 只有在没有消息时才显示空状态
+            const hasMessages = this.chatMessages.children.length > 1 || this.chatMessages.querySelector('.message');
+            if (!hasMessages) {
+                this.emptyState.style.display = 'flex';
+            }
+        }
+    }
+
+    hideEmptyState() {
+        if (this.emptyState) {
+            this.emptyState.style.display = 'none';
+        }
     }
 
     toggleEmojiPicker() {
@@ -589,10 +752,13 @@ class PeerChat {
         } else {
             this.emojiPicker.style.display = 'block';
 
-            // 定位表情选择器
-            const rect = this.emojiBtn.getBoundingClientRect();
-            this.emojiPicker.style.bottom = (window.innerHeight - rect.top + 10) + 'px';
-            this.emojiPicker.style.left = Math.max(10, rect.left - 50) + 'px';
+            // 定位表情选择器（相对于fixed输入框）
+            const inputRect = this.messageInput.getBoundingClientRect();
+            const containerRect = this.messageInput.parentElement.getBoundingClientRect();
+
+            this.emojiPicker.style.bottom = (window.innerHeight - inputRect.top + 10) + 'px';
+            this.emojiPicker.style.left = Math.max(10, inputRect.left - containerRect.left + 10) + 'px';
+            this.emojiPicker.style.right = Math.max(10, containerRect.right - inputRect.right + 10) + 'px';
         }
     }
 
@@ -779,6 +945,53 @@ class PeerChat {
             if (this.emojiPicker && !this.emojiPicker.contains(e.target) &&
                 !this.emojiBtn.contains(e.target)) {
                 this.emojiPicker.style.display = 'none';
+            }
+        });
+
+        // 文件拖拽功能
+        this.setupDragAndDrop();
+    }
+
+    setupDragAndDrop() {
+        const chatSection = document.querySelector('.chat-section');
+
+        // 拖拽进入
+        chatSection.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            if (this.isConnected) {
+                chatSection.style.backgroundColor = 'rgba(59, 130, 246, 0.05)';
+            }
+        });
+
+        // 拖拽离开
+        chatSection.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            chatSection.style.backgroundColor = '';
+        });
+
+        // 拖拽放下
+        chatSection.addEventListener('drop', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            chatSection.style.backgroundColor = '';
+
+            if (!this.isConnected) {
+                this.showNotification('请先连接再发送文件', 'warning');
+                return;
+            }
+
+            const files = Array.from(e.dataTransfer.files);
+            if (files.length > 0) {
+                this.handleFileSelection(files);
+            }
+        });
+
+        // 拖拽开始时显示提示
+        chatSection.addEventListener('dragenter', (e) => {
+            if (this.isConnected && e.dataTransfer.types.includes('Files')) {
+                this.showNotification('松开鼠标发送文件', 'info');
             }
         });
     }
