@@ -1,0 +1,48 @@
+{
+  "name": "peerjs-chat",
+  "version": "1.0.0",
+  "description": "一个基于Peer.js的实时P2P聊天应用",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx http-server . -p 3000 -c-1",
+    "dev": "npx live-server --port=3000",
+    "build": "echo '这是一个静态网站，无需构建'",
+    "lint": "npx eslint *.js || echo 'ESLint未安装或配置'",
+    "format": "npx prettier --write *.html *.css *.js || echo 'Prettier未安装'"
+  },
+  "keywords": [
+    "peerjs",
+    "chat",
+    "p2p",
+    "webrtc",
+    "realtime",
+    "messaging"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/peerjs-chat.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/peerjs-chat/issues"
+  },
+  "homepage": "https://yourusername.github.io/peerjs-chat",
+  "devDependencies": {
+    "http-server": "^14.1.1",
+    "live-server": "^1.2.2",
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "not dead",
+    "not < 2%"
+  ],
+  "dependencies": {
+    "peerjs": "^1.5.2"
+  }
+}

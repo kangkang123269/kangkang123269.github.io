@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peer.js 聊天室</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Peer.js CDN -->
+    <script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- 网络状态指示器 -->
+        <div id="network-status" class="network-status" style="display: none;"></div>
+
+        <header>
+            <h1>Chat</h1>
+            <p style="color: rgba(44, 62, 80, 0.7); font-size: 16px; font-weight: 400; margin-top: 4px;">
+                安全的点对点聊天
+            </p>
+        </header>
+
+        <div class="connection-section">
+            <div class="connection-info">
+                <div class="your-id">
+                    <label>你的ID:</label>
+                    <input type="text" id="your-id" readonly>
+                    <button id="copy-id">分享链接</button>
+                </div>
+                <div class="connect-to" id="manual-connect" style="display: none;">
+                    <label>连接到ID:</label>
+                    <input type="text" id="connect-id" placeholder="输入对方ID">
+                    <button id="connect-btn">连接</button>
+                </div>
+            </div>
+
+            <div class="connection-status">
+                <div id="status">初始化中...</div>
+                <div id="auto-connect-info" style="display: none; margin-top: 8px; font-size: 13px; color: #64748b;">
+                    检测到邀请，自动连接中...
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-section">
+            <div class="chat-messages" id="chat-messages">
+                <!-- 消息将在这里显示 -->
+            </div>
+
+            <div class="message-input">
+                <div class="input-actions">
+                    <button id="emoji-btn" class="action-btn" disabled>😊</button>
+                    <button id="file-btn" class="action-btn" disabled>📎</button>
+                    <input type="file" id="file-input" style="display: none;" multiple>
+                </div>
+                <input type="text" id="message-input" placeholder="输入消息..." disabled>
+                <button id="send-btn" disabled>发送</button>
+            </div>
+
+            <!-- 表情包选择器 -->
+            <div id="emoji-picker" class="emoji-picker">
+                <div class="emoji-grid">
+                    <!-- 表情包将通过JavaScript动态添加 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
