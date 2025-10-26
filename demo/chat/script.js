@@ -40,9 +40,13 @@ class PeerChat {
         // 网络状态
         this.isLocalNetwork = false;
         this.networkStatus = null;
+        this.networkDiagnostics = document.getElementById('network-diagnostics');
 
         // 初始时显示连接部分
         this.showConnectionSection();
+
+        // 进行网络诊断
+        this.performNetworkDiagnostics();
     }
 
     parseUrlParameters() {
@@ -227,10 +231,22 @@ class PeerChat {
             this.peer = new Peer({
                 config: {
                     'iceServers': [
-                        { url: 'stun:stun.l.google.com:19302' },
-                        { url: 'stun:stun1.l.google.com:19302' }
-                    ]
-                }
+                        // Google STUN服务器
+                        { urls: 'stun:stun.l.google.com:19302' },
+                        { urls: 'stun:stun1.l.google.com:19302' },
+                        // Mozilla STUN服务器
+                        { urls: 'stun:stun.services.mozilla.com:3478' },
+                        // Nextcloud STUN服务器
+                        { urls: 'stun:stun.nextcloud.com:443' },
+                        // Cloudflare STUN服务器
+                        { urls: 'stun:stun.cloudflare.com:3478' },
+                        // Twilio STUN服务器
+                        { urls: 'stun:global.stun.twilio.com:3478' }
+                    ],
+                    'iceCandidatePoolSize': 10,
+                    'iceTransportPolicy': 'all'
+                },
+                debug: 2 // 启用调试信息
             });
 
             // 当Peer连接到服务器时
@@ -276,13 +292,62 @@ class PeerChat {
             this.peer.on('error', (err) => {
                 console.error('Peer错误:', err);
                 this.updateStatus('error');
-                this.showNotification('连接错误: ' + err.message, 'error');
+
+                let errorMessage = '连接错误: ';
+                let suggestions = '';
+
+                switch(err.type) {
+                    case 'browser-incompatible':
+                        errorMessage += '浏览器不支持WebRTC';
+                        suggestions = '请使用Chrome、Firefox、Safari或Edge浏览器的最新版本';
+                        break;
+                    case 'disconnected':
+                        errorMessage += '连接已断开';
+                        suggestions = '网络连接不稳定，请检查网络并重试';
+                        break;
+                    case 'network':
+                        errorMessage += '网络错误';
+                        suggestions = '1) 检查网络连接 2) 关闭VPN/代理 3) 尝试刷新页面';
+                        break;
+                    case 'server-error':
+                        errorMessage += '服务器错误';
+                        suggestions = 'Peer.js服务器暂时不可用，请稍后重试';
+                        break;
+                    case 'peer-unavailable':
+                        errorMessage += '对方不在线或ID不存在';
+                        suggestions = '请确认对方在线并检查ID是否正确';
+                        break;
+                    case 'webrtc':
+                        errorMessage += 'WebRTC连接失败';
+                        suggestions = '可能是防火墙阻止了连接，建议尝试：1) 关闭VPN 2) 检查企业网络防火墙 3) 尝试同网络连接';
+                        break;
+                    default:
+                        errorMessage += err.message || '未知错误';
+                        suggestions = '如果问题持续，请尝试刷新页面或检查网络设置';
+                }
+
+                this.showNotification(errorMessage + '\n建议: ' + suggestions, 'error');
             });
 
         } catch (error) {
             console.error('初始化Peer失败:', error);
             this.updateStatus('error');
-            this.showNotification('初始化失败，请刷新页面重试', 'error');
+
+            let errorMessage = 'Peer初始化失败';
+            let suggestions = '';
+
+            if (error.message.includes('WebRTC')) {
+                errorMessage = 'WebRTC不支持';
+                suggestions = '请使用Chrome、Firefox、Safari或Edge浏览器的最新版本';
+            } else if (error.message.includes('network')) {
+                errorMessage = '网络连接失败';
+                suggestions = '请检查网络连接，必要时关闭VPN或代理';
+            } else {
+                errorMessage = '初始化失败';
+                suggestions = '请刷新页面重试，如果问题持续，请尝试更换浏览器或网络环境';
+            }
+
+            this.showNotification(errorMessage + ': ' + suggestions, 'error');
         }
     }
 
@@ -339,7 +404,22 @@ class PeerChat {
             conn.on('error', (err) => {
                 console.error('连接错误:', err);
                 this.updateStatus('disconnected');
-                this.showNotification('自动连接失败: ' + err.message + '。你可以手动输入ID连接。', 'error');
+
+                let errorMessage = '自动连接失败';
+                let suggestions = '';
+
+                if (err.message.includes('Could not connect')) {
+                    errorMessage = '无法连接到对方';
+                    suggestions = '可能的原因：1) 对方不在线 2) 网络防火墙阻止 3) ID输入错误';
+                } else if (err.message.includes('timeout')) {
+                    errorMessage = '连接超时';
+                    suggestions = '网络延迟较高，建议：1) 尝试同网络连接 2) 检查网络稳定性 3) 稍后重试';
+                } else {
+                    errorMessage = err.message || '连接失败';
+                    suggestions = '你可以手动输入对方ID连接';
+                }
+
+                this.showNotification(errorMessage + ': ' + suggestions, 'error');
 
                 // 显示手动连接选项和连接部分
                 this.manualConnectDiv.style.display = 'block';
@@ -351,7 +431,19 @@ class PeerChat {
         } catch (error) {
             console.error('连接失败:', error);
             this.updateStatus('disconnected');
-            this.showNotification('连接失败，请检查ID是否正确', 'error');
+
+            let errorMessage = '连接失败';
+            let suggestions = '';
+
+            if (error.message.includes('Invalid ID')) {
+                errorMessage = '无效的Peer ID';
+                suggestions = '请检查ID格式是否正确（应该是类似 ba7bf5fd-04be-4c6a-adec-dd0570e155c 这样的格式）';
+            } else {
+                errorMessage = '连接初始化失败';
+                suggestions = '请检查网络连接并重试';
+            }
+
+            this.showNotification(errorMessage + ': ' + suggestions, 'error');
         }
     }
 
@@ -728,6 +820,125 @@ class PeerChat {
                 this.chatSection.style.height = '';
             }, 10);
         }
+    }
+
+    performNetworkDiagnostics() {
+        console.log('开始网络诊断...');
+
+        let issuesFound = [];
+
+        // 检查WebRTC支持
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+            console.warn('浏览器不支持WebRTC');
+            issuesFound.push('WebRTC不支持');
+            this.showNotification('您的浏览器不支持WebRTC，可能无法进行P2P连接', 'warning');
+        }
+
+        // 检查网络连接
+        if (!navigator.onLine) {
+            console.warn('网络连接不可用');
+            issuesFound.push('网络离线');
+            this.showNotification('网络连接不可用，请检查网络设置', 'error');
+        }
+
+        // 测试STUN服务器连接
+        this.testStunServers();
+
+        // 检测防火墙限制
+        this.checkFirewallRestrictions();
+
+        // 显示网络诊断指示器
+        if (issuesFound.length > 0) {
+            this.showNetworkDiagnostics('网络问题: ' + issuesFound.join(', '), 'warning');
+        } else {
+            this.showNetworkDiagnostics('网络正常', 'success');
+        }
+    }
+
+    testStunServers() {
+        const pc = new RTCPeerConnection({
+            iceServers: [
+                { urls: 'stun:stun.l.google.com:19302' },
+                { urls: 'stun:stun.services.mozilla.com:3478' }
+            ]
+        });
+
+        let stunWorks = false;
+
+        pc.onicecandidate = (event) => {
+            if (event.candidate && event.candidate.candidate.includes('typ srflx')) {
+                stunWorks = true;
+                console.log('STUN服务器工作正常');
+            }
+        };
+
+        // 创建数据通道来触发ICE收集
+        pc.createDataChannel('test');
+
+        setTimeout(() => {
+            if (!stunWorks) {
+                console.warn('STUN服务器可能有问题');
+                this.showNotification('检测到网络可能阻止WebRTC连接，建议尝试以下解决方案：1) 关闭VPN 2) 检查防火墙设置 3) 尝试使用同网络连接', 'warning');
+                this.showNetworkDiagnostics('STUN连接失败', 'error');
+            } else {
+                this.showNetworkDiagnostics('STUN连接正常', 'success');
+            }
+            pc.close();
+        }, 3000);
+    }
+
+    checkFirewallRestrictions() {
+        // 检测常见端口是否被阻止
+        const portsToCheck = [19302, 443, 3478];
+        let blockedPorts = [];
+
+        portsToCheck.forEach(port => {
+            const img = new Image();
+            img.onload = () => console.log(`端口 ${port} 可用`);
+            img.onerror = () => {
+                console.warn(`端口 ${port} 可能被阻止`);
+                blockedPorts.push(port);
+            };
+            img.src = `https://httpbin.org/status/${port}`;
+        });
+
+        setTimeout(() => {
+            if (blockedPorts.length > 0) {
+                console.warn('检测到可能的端口限制:', blockedPorts);
+            }
+        }, 2000);
+    }
+
+    showNetworkDiagnostics(message, type = 'info') {
+        if (this.networkDiagnostics) {
+            this.networkDiagnostics.textContent = message;
+            this.networkDiagnostics.className = `network-diagnostics ${type}`;
+            this.networkDiagnostics.style.display = 'block';
+
+            // 点击时显示详细诊断信息
+            this.networkDiagnostics.onclick = () => {
+                this.showDetailedDiagnostics();
+            };
+
+            // 5秒后自动隐藏
+            setTimeout(() => {
+                if (this.networkDiagnostics) {
+                    this.networkDiagnostics.style.display = 'none';
+                }
+            }, 5000);
+        }
+    }
+
+    showDetailedDiagnostics() {
+        let diagnosticInfo = '网络诊断详情:\n\n';
+
+        diagnosticInfo += '浏览器: ' + navigator.userAgent + '\n';
+        diagnosticInfo += '在线状态: ' + (navigator.onLine ? '在线' : '离线') + '\n';
+        diagnosticInfo += 'WebRTC支持: ' + (navigator.mediaDevices ? '支持' : '不支持') + '\n';
+        diagnosticInfo += '当前时间: ' + new Date().toLocaleString() + '\n';
+        diagnosticInfo += 'UserAgent: ' + navigator.userAgent + '\n';
+
+        this.showNotification(diagnosticInfo, 'info');
     }
 
     showEmptyState() {

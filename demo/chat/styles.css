@@ -729,6 +729,54 @@ header h1 {
     animation: networkStatusSlideIn 0.3s ease-out;
 }
 
+/* 网络诊断指示器 */
+.network-diagnostics {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 500;
+    z-index: 1000;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.2);
+    animation: networkStatusSlideIn 0.3s ease-out;
+    background: rgba(245, 158, 11, 0.9);
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.network-diagnostics:hover {
+    background: rgba(245, 158, 11, 1);
+    transform: scale(1.05);
+}
+
+.network-diagnostics.success {
+    background: rgba(5, 150, 105, 0.9);
+}
+
+.network-diagnostics.success:hover {
+    background: rgba(5, 150, 105, 1);
+}
+
+.network-diagnostics.warning {
+    background: rgba(245, 158, 11, 0.9);
+}
+
+.network-diagnostics.warning:hover {
+    background: rgba(245, 158, 11, 1);
+}
+
+.network-diagnostics.error {
+    background: rgba(220, 38, 38, 0.9);
+}
+
+.network-diagnostics.error:hover {
+    background: rgba(220, 38, 38, 1);
+}
+
 @keyframes networkStatusSlideIn {
     from {
         opacity: 0;
@@ -1057,6 +1105,14 @@ header h1 {
         left: 6px;
         padding: 3px 6px;
         font-size: 9px;
+        border-radius: 10px;
+    }
+
+    .network-diagnostics {
+        top: 6px;
+        right: 6px;
+        padding: 3px 6px;
+        font-size: 8px;
         border-radius: 10px;
     }
 
